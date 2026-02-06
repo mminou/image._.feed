@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xXy-nb-NhU">
-                                <rect key="frame" x="16" y="118" width="361" height="666"/>
+                                <rect key="frame" x="16" y="0.0" width="361" height="852"/>
                                 <color key="backgroundColor" name="YP Black"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" rowHeight="200" id="pyv-dw-z6C" customClass="ImagesListCell" customModule="imageFeed" customModuleProvider="target">
@@ -86,9 +86,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstItem="xXy-nb-NhU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Io1-FS-5kF"/>
+                            <constraint firstItem="xXy-nb-NhU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Io1-FS-5kF"/>
                             <constraint firstItem="xXy-nb-NhU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JP2-rm-Ifh"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="xXy-nb-NhU" secondAttribute="bottom" id="S1y-Hq-ffP"/>
+                            <constraint firstAttribute="bottom" secondItem="xXy-nb-NhU" secondAttribute="bottom" id="S1y-Hq-ffP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xXy-nb-NhU" secondAttribute="trailing" id="ss6-0n-XbP"/>
                         </constraints>
                     </view>
