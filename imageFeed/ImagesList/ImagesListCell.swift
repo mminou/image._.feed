@@ -1,0 +1,10 @@
+import UIKit
+
+final class ImagesListCell: UITableViewCell {
+    static let reuseIdentifier = "ImagesListCell"
+    
+    @IBOutlet weak var imageViewCell: UIImageView!
+    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
+
+}
