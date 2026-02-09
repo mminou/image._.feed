@@ -1,26 +1,28 @@
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
+    // MARK: - IB Outlets
     @IBOutlet private weak var tableView: UITableView!
     
+    // MARK: - Private Properties
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .none
         return formatter
     }()
-    
     private let photosName: [String] = Array(1..<18).map{"\($0)"}
     
+    // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 200
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
     
-    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+    // MARK: - Private Methods
+    private func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
         let currentImage = photosName[indexPath.row]
         guard let image = UIImage(named: currentImage) else { return }
         cell.imageViewCell.image = image
@@ -35,12 +37,14 @@ class ImagesListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         photosName.count
@@ -65,6 +69,6 @@ extension ImagesListViewController: UITableViewDataSource {
         let cellWidth = tableView.bounds.width
         let scale = cellWidth / imageWidth
         
-        return (imageHeight + 8)*scale
+        return (imageHeight + 8) * scale
     }
 }
