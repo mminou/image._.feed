@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		783524EF2F35F33F005C618A /* imageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F4740C2F2EBBC7001F853B /* imageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		783525012F35F340005C618A /* Exceptions for "imageFeed" folder in "imageFeed" target */ = {
+		78F4741E2F2EBBC8001F853B /* Exceptions for "imageFeed" folder in "imageFeed" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 783524EE2F35F33F005C618A /* imageFeed */;
+			target = 78F4740B2F2EBBC7001F853B /* imageFeed */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		783524F12F35F33F005C618A /* imageFeed */ = {
+		78F4740E2F2EBBC7001F853B /* imageFeed */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				783525012F35F340005C618A /* Exceptions for "imageFeed" folder in "imageFeed" target */,
+				78F4741E2F2EBBC8001F853B /* Exceptions for "imageFeed" folder in "imageFeed" target */,
 			);
 			path = imageFeed;
 			sourceTree = "<group>";
@@ -32,7 +32,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		783524EC2F35F33F005C618A /* Frameworks */ = {
+		78F474092F2EBBC7001F853B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +42,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		783524E62F35F33E005C618A = {
+		78F474032F2EBBC7001F853B = {
 			isa = PBXGroup;
 			children = (
-				783524F12F35F33F005C618A /* imageFeed */,
-				783524F02F35F33F005C618A /* Products */,
+				78F4740E2F2EBBC7001F853B /* imageFeed */,
+				78F4740D2F2EBBC7001F853B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		783524F02F35F33F005C618A /* Products */ = {
+		78F4740D2F2EBBC7001F853B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				783524EF2F35F33F005C618A /* imageFeed.app */,
+				78F4740C2F2EBBC7001F853B /* imageFeed.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +61,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		783524EE2F35F33F005C618A /* imageFeed */ = {
+		78F4740B2F2EBBC7001F853B /* imageFeed */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 783525022F35F340005C618A /* Build configuration list for PBXNativeTarget "imageFeed" */;
+			buildConfigurationList = 78F4741F2F2EBBC8001F853B /* Build configuration list for PBXNativeTarget "imageFeed" */;
 			buildPhases = (
-				783524EB2F35F33F005C618A /* Sources */,
-				783524EC2F35F33F005C618A /* Frameworks */,
-				783524ED2F35F33F005C618A /* Resources */,
+				78F474082F2EBBC7001F853B /* Sources */,
+				78F474092F2EBBC7001F853B /* Frameworks */,
+				78F4740A2F2EBBC7001F853B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				783524F12F35F33F005C618A /* imageFeed */,
+				78F4740E2F2EBBC7001F853B /* imageFeed */,
 			);
 			name = imageFeed;
 			packageProductDependencies = (
 			);
 			productName = imageFeed;
-			productReference = 783524EF2F35F33F005C618A /* imageFeed.app */;
+			productReference = 78F4740C2F2EBBC7001F853B /* imageFeed.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		783524E72F35F33E005C618A /* Project object */ = {
+		78F474042F2EBBC7001F853B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					783524EE2F35F33F005C618A = {
+					78F4740B2F2EBBC7001F853B = {
 						CreatedOnToolsVersion = 26.0;
 					};
 				};
 			};
-			buildConfigurationList = 783524EA2F35F33E005C618A /* Build configuration list for PBXProject "imageFeed" */;
+			buildConfigurationList = 78F474072F2EBBC7001F853B /* Build configuration list for PBXProject "imageFeed" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 783524E62F35F33E005C618A;
+			mainGroup = 78F474032F2EBBC7001F853B;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 783524F02F35F33F005C618A /* Products */;
+			productRefGroup = 78F4740D2F2EBBC7001F853B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				783524EE2F35F33F005C618A /* imageFeed */,
+				78F4740B2F2EBBC7001F853B /* imageFeed */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		783524ED2F35F33F005C618A /* Resources */ = {
+		78F4740A2F2EBBC7001F853B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +128,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		783524EB2F35F33F005C618A /* Sources */ = {
+		78F474082F2EBBC7001F853B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,7 +138,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		783525032F35F340005C618A /* Debug */ = {
+		78F474202F2EBBC8001F853B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -150,8 +150,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -160,16 +161,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.mminou.imageFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		783525042F35F340005C618A /* Release */ = {
+		78F474212F2EBBC8001F853B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -181,8 +186,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -191,16 +197,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.mminou.imageFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
-		783525052F35F340005C618A /* Debug */ = {
+		78F474222F2EBBC8001F853B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -263,7 +273,7 @@
 			};
 			name = Debug;
 		};
-		783525062F35F340005C618A /* Release */ = {
+		78F474232F2EBBC8001F853B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -322,25 +332,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		783524EA2F35F33E005C618A /* Build configuration list for PBXProject "imageFeed" */ = {
+		78F474072F2EBBC7001F853B /* Build configuration list for PBXProject "imageFeed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				783525052F35F340005C618A /* Debug */,
-				783525062F35F340005C618A /* Release */,
+				78F474222F2EBBC8001F853B /* Debug */,
+				78F474232F2EBBC8001F853B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		783525022F35F340005C618A /* Build configuration list for PBXNativeTarget "imageFeed" */ = {
+		78F4741F2F2EBBC8001F853B /* Build configuration list for PBXNativeTarget "imageFeed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				783525032F35F340005C618A /* Debug */,
-				783525042F35F340005C618A /* Release */,
+				78F474202F2EBBC8001F853B /* Debug */,
+				78F474212F2EBBC8001F853B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 783524E72F35F33E005C618A /* Project object */;
+	rootObject = 78F474042F2EBBC7001F853B /* Project object */;
 }
