@@ -11,6 +11,10 @@ final class SingleImageViewController: UIViewController {
     
     @IBOutlet private weak var imageView: UIImageView!
     
+    @IBAction private func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image
