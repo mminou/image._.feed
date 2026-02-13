@@ -19,7 +19,7 @@
                         <color key="selectedImageTintColor" name="YP White"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="BXp-m2-0bE"/>
+                        <segue destination="mDo-5L-biK" kind="relationship" relationship="viewControllers" id="BXp-m2-0bE"/>
                         <segue destination="3VB-SQ-btq" kind="relationship" relationship="viewControllers" id="A3M-aK-O9W"/>
                     </connections>
                 </tabBarController>
@@ -110,14 +110,15 @@
                             <constraint firstAttribute="trailingMargin" secondItem="xXy-nb-NhU" secondAttribute="trailing" id="ss6-0n-XbP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="FeedActive" id="y3I-wq-QqN"/>
+                    <navigationItem key="navigationItem" id="iZB-AH-9Ta"/>
                     <connections>
                         <outlet property="tableView" destination="xXy-nb-NhU" id="tHO-RN-P1g"/>
+                        <segue destination="EOI-dr-WM5" kind="show" identifier="ShowSingleImage" id="dd9-uS-EI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138.1679389312977" y="130.98591549295776"/>
+            <point key="canvasLocation" x="1064.885496183206" y="130.98591549295776"/>
         </scene>
         <!--Profile-->
         <scene sceneID="rgd-Nw-du6">
@@ -202,8 +203,63 @@
             </objects>
             <point key="canvasLocation" x="136.64122137404578" y="-537.32394366197184"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2it-Ir-JJp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mDo-5L-biK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="FeedActive" id="y3I-wq-QqN"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FEK-ve-Z0k">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="YP White"/>
+                        <color key="barTintColor" name="YP White"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="YP Black"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="XpV-xA-0Ew"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lk1-hm-CJT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.1679389312977" y="130.98591549295776"/>
+        </scene>
+        <!--Single Image-->
+        <scene sceneID="dXX-Dk-BUW">
+            <objects>
+                <viewController id="EOI-dr-WM5" userLabel="Single Image" customClass="SingleImageViewController" customModule="imageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9X7-2o-BVL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="c6G-sK-xJ4">
+                                <rect key="frame" x="0.0" y="172" width="393" height="563"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IGj-y1-TA1"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="c6G-sK-xJ4" firstAttribute="top" secondItem="IGj-y1-TA1" secondAttribute="top" id="UiR-i7-iPz"/>
+                            <constraint firstItem="c6G-sK-xJ4" firstAttribute="leading" secondItem="IGj-y1-TA1" secondAttribute="leading" id="W2i-8l-8du"/>
+                            <constraint firstItem="c6G-sK-xJ4" firstAttribute="trailing" secondItem="IGj-y1-TA1" secondAttribute="trailing" id="kDt-EQ-qsE"/>
+                            <constraint firstItem="c6G-sK-xJ4" firstAttribute="bottom" secondItem="IGj-y1-TA1" secondAttribute="bottom" id="vxR-fr-yRF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="AP5-3N-Uxn"/>
+                    <connections>
+                        <outlet property="imageView" destination="c6G-sK-xJ4" id="VTH-rx-3Or"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mue-B8-SBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1944" y="131"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="1" width="736" height="1308"/>
         <image name="CatAvatar" width="735" height="734"/>
         <image name="Exit" width="44" height="44"/>
         <image name="FavoritesNoActive" width="44" height="44"/>
