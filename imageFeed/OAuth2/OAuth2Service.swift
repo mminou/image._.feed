@@ -2,23 +2,14 @@ import UIKit
 
 final class OAuth2Service {
     
+    // MARK: - singleton
+    static let shared = OAuth2Service()
+    private init() { }
+    
+    // MARK: - Private Properties
     private var authStorage = OAuth2TokenStorage()
     
-    private func tokenAuthRequest(code: String) -> URLRequest? {
-        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString) else { return nil }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: Constants.accessKey),
-            URLQueryItem(name: "client_secret", value: Constants.secretKey),
-            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
-            URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "grant_type", value: "authorization_code")
-        ]
-        guard let url = urlComponents.url else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        return request
-    }
-    
+    // MARK: - Public Methods
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let urlRequest = tokenAuthRequest(code: code) else { return }
         URLSession.shared.dataTask(with: urlRequest)
@@ -29,7 +20,6 @@ final class OAuth2Service {
             case .success(let data):
                 do {
                     let decoder = JSONDecoder()
-                    //decoder.keyDecodingStrategy = .convertFromSnakeCase
                     
                     let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
                     self.authStorage.token = response.access_token
@@ -58,8 +48,25 @@ final class OAuth2Service {
         }
         task.resume()
     }
+    
+    // MARK: - Private Methods
+    private func tokenAuthRequest(code: String) -> URLRequest? {
+        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString) else { return nil }
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: Constants.accessKey),
+            URLQueryItem(name: "client_secret", value: Constants.secretKey),
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
+            URLQueryItem(name: "code", value: code),
+            URLQueryItem(name: "grant_type", value: "authorization_code")
+        ]
+        guard let url = urlComponents.url else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        return request
+    }
 }
 
+// MARK: - struct
 struct OAuthTokenResponseBody: Decodable {
     let access_token: String
     let token_type: String

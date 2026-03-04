@@ -2,11 +2,15 @@ import UIKit
 import WebKit
 
 final class WebViewViewController: UIViewController {
+    
+    // MARK: - IB Outlets
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var progressBar: UIProgressView!
     
+    // MARK: - Public Properties
     weak var delegate: WebViewViewControllerDelegate?
     
+    // MARK: - Overrides Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
@@ -27,6 +31,7 @@ final class WebViewViewController: UIViewController {
         observerRemove()
     }
     
+    // MARK: - Private Methods
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else { return }
         
@@ -67,6 +72,7 @@ final class WebViewViewController: UIViewController {
     
 }
 
+// MARK: - WKNavigationDelegate
 extension WebViewViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
@@ -93,11 +99,13 @@ extension WebViewViewController: WKNavigationDelegate {
     }
 }
 
+// MARK: - protocol
 protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
     func webViewViewControllerDidCancel(_ vc: WebViewViewController)
 }
 
+// MARK: - enum
 enum WebViewConstants {
     static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     static let unsplashAuthorizeTokenURLString = "https://unsplash.com/oauth/token"
