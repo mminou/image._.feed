@@ -10,7 +10,7 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //UserDefaults.standard.removeObject(forKey: "bearerToken")
+        UserDefaults.standard.removeObject(forKey: "bearerToken")
         
         if storage.token != nil {
             switchToTabBarController()
@@ -27,11 +27,7 @@ final class SplashViewController: UIViewController {
         }
         let tabBarViewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(identifier: "TabBarViewController")
         
-        //window.rootViewController = tabBarViewController
-        
-        UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = tabBarViewController
-        }, completion: nil)
+        window.rootViewController = tabBarViewController
     }
 }
 
