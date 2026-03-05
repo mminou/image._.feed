@@ -10,7 +10,7 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UserDefaults.standard.removeObject(forKey: "bearerToken")
+        //UserDefaults.standard.removeObject(forKey: "bearerToken")
         
         if storage.token != nil {
             switchToTabBarController()

@@ -11,9 +11,17 @@ final class OAuth2Service {
     
     // MARK: - Public Methods
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let urlRequest = tokenAuthRequest(code: code) else { return }
+        guard let urlRequest = tokenAuthRequest(code: code) else {
+            print("не удалось создать URLRequest")
+            completion(.failure(NetworkError.invalidRequest))
+            return
+        }
         URLSession.shared.dataTask(with: urlRequest)
-        guard let request = tokenAuthRequest(code: code) else { return }
+        guard let request = tokenAuthRequest(code: code) else {
+            print("не удалось создать Request")
+            completion(.failure(NetworkError.invalidRequest))
+            return
+        }
         
         let task = URLSession.shared.data(for: request) { (result: Result<Data, Error>) in
             switch result {
@@ -42,7 +50,6 @@ final class OAuth2Service {
                         print("url session error")
                     }
                 }
-                
                 completion(.failure(error))
             }
         }
@@ -51,7 +58,10 @@ final class OAuth2Service {
     
     // MARK: - Private Methods
     private func tokenAuthRequest(code: String) -> URLRequest? {
-        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString) else { return nil }
+        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString) else {
+            print("не удалось создать URLComponents")
+            return nil
+        }
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "client_secret", value: Constants.secretKey),
@@ -59,7 +69,10 @@ final class OAuth2Service {
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
-        guard let url = urlComponents.url else { return nil }
+        guard let url = urlComponents.url else {
+            print("не удалось получить url из URLComponents")
+            return nil
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         return request
