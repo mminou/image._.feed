@@ -10,8 +10,6 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //UserDefaults.standard.removeObject(forKey: "bearerToken")
-        
         if storage.token != nil {
             switchToTabBarController()
         } else {
@@ -52,7 +50,6 @@ extension SplashViewController {
 // MARK: - AuthViewControllerDelegate
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ vc: AuthViewController) {
-        //vc.dismiss(animated: true)
         switchToTabBarController()
     }
 }

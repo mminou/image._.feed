@@ -8,6 +8,7 @@ final class OAuth2Service {
     
     // MARK: - Private Properties
     private var authStorage = OAuth2TokenStorage()
+    private let decoder = JSONDecoder()
     
     // MARK: - Public Methods
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -27,9 +28,7 @@ final class OAuth2Service {
             switch result {
             case .success(let data):
                 do {
-                    let decoder = JSONDecoder()
-                    
-                    let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
+                    let response = try self.decoder.decode(OAuthTokenResponseBody.self, from: data)
                     self.authStorage.token = response.access_token
                     
                     completion(.success(response.access_token))
