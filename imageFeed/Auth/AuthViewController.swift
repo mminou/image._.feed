@@ -1,4 +1,5 @@
 import UIKit
+import ProgressHUD
 
 final class AuthViewController: UIViewController {
     
@@ -8,6 +9,7 @@ final class AuthViewController: UIViewController {
     // MARK: - Private Properties
     private let showWebViewSegueIdentifier = "ShowWebView"
     private let oauthService = OAuth2Service.shared
+    
     
     // MARK: - Overrides Methods
     override func viewDidLoad() {
@@ -39,8 +41,12 @@ final class AuthViewController: UIViewController {
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
+        //ProgressHUD.animate()
+        UIBlockingProgressHUD.show()
         
         oauthService.fetchOAuthToken(code: code) { result in
+            //ProgressHUD.dismiss()
+            UIBlockingProgressHUD.show()
             switch result {
             case .success:
                 print("success")
@@ -49,6 +55,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
             case .failure(let error):
                 print("error: \(error)")
             }
+            
         }
     }
     

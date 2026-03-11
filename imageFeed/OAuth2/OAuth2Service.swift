@@ -9,22 +9,29 @@ final class OAuth2Service {
     // MARK: - Private Properties
     private var authStorage = OAuth2TokenStorage()
     private let decoder = JSONDecoder()
+    private let urlSession = URLSession.shared
+    private var task: URLSessionTask?
+    private var lastCode: String?
     
     // MARK: - Public Methods
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let urlRequest = tokenAuthRequest(code: code) else {
-            print("не удалось создать URLRequest")
+        assert(Thread.isMainThread)
+        guard lastCode != code else {
             completion(.failure(NetworkError.invalidRequest))
             return
         }
-        URLSession.shared.dataTask(with: urlRequest)
-        guard let request = tokenAuthRequest(code: code) else {
+        task?.cancel()
+        lastCode = code
+        
+        guard
+            let request = tokenAuthRequest(code: code)
+        else {
             print("не удалось создать Request")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
         
-        let task = URLSession.shared.data(for: request) { (result: Result<Data, Error>) in
+        let task = urlSession.data(for: request) { (result: Result<Data, Error>) in
             switch result {
             case .success(let data):
                 do {
@@ -51,13 +58,18 @@ final class OAuth2Service {
                 }
                 completion(.failure(error))
             }
+            self.task = nil
+            self.lastCode = nil
         }
+        self.task = task
         task.resume()
     }
     
     // MARK: - Private Methods
     private func tokenAuthRequest(code: String) -> URLRequest? {
-        guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString) else {
+        guard
+            var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString)
+        else {
             print("не удалось создать URLComponents")
             return nil
         }
@@ -68,7 +80,9 @@ final class OAuth2Service {
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
-        guard let url = urlComponents.url else {
+        guard
+            let url = urlComponents.url
+        else {
             print("не удалось получить url из URLComponents")
             return nil
         }
