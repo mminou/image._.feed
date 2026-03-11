@@ -46,7 +46,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
         
         oauthService.fetchOAuthToken(code: code) { result in
             //ProgressHUD.dismiss()
-            UIBlockingProgressHUD.show()
+            UIBlockingProgressHUD.dismiss()
             switch result {
             case .success:
                 print("success")

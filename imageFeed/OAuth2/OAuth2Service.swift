@@ -7,7 +7,6 @@ final class OAuth2Service {
     private init() { }
     
     // MARK: - Private Properties
-    private var authStorage = OAuth2TokenStorage()
     private let decoder = JSONDecoder()
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
@@ -36,8 +35,7 @@ final class OAuth2Service {
             case .success(let data):
                 do {
                     let response = try self.decoder.decode(OAuthTokenResponseBody.self, from: data)
-                    self.authStorage.token = response.access_token
-                    
+                    OAuth2TokenStorage.shared.token = response.access_token
                     completion(.success(response.access_token))
                     
                 } catch { completion(.failure(error)) }

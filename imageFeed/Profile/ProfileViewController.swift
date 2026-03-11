@@ -8,9 +8,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProfileImage()
-        setupNameLabel()
-        setupUsername()
-        setupBio()
+        setupProfileService()
         setupLogout()
     }
     
@@ -34,40 +32,40 @@ final class ProfileViewController: UIViewController {
         profileUiImage = uiImage
     }
     
-    private func setupNameLabel() {
+    private func setupNameLabel(text: String) {
         let uiLabel = UILabel()
         view.addSubview(uiLabel)
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         uiLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         uiLabel.leadingAnchor.constraint(equalTo: profileUiImage.leadingAnchor).isActive = true
         uiLabel.topAnchor.constraint(equalTo: profileUiImage.bottomAnchor, constant: 8).isActive = true
-        uiLabel.text = "avocado"
+        uiLabel.text = text
         uiLabel.textColor = .ypWhite
         
         nameUiImage = uiLabel
     }
     
-    private func setupUsername() {
+    private func setupUsername(text: String) {
         let uiLabel = UILabel()
         view.addSubview(uiLabel)
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         uiLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         uiLabel.leadingAnchor.constraint(equalTo: nameUiImage.leadingAnchor).isActive = true
         uiLabel.topAnchor.constraint(equalTo: nameUiImage.bottomAnchor, constant: 8).isActive = true
-        uiLabel.text = "@avocado"
+        uiLabel.text = text
         uiLabel.textColor = .ypGray
         
         usernameUiImage = uiLabel
     }
     
-    private func setupBio() {
+    private func setupBio(text: String) {
         let uiLabel = UILabel()
         view.addSubview(uiLabel)
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         uiLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         uiLabel.leadingAnchor.constraint(equalTo: usernameUiImage.leadingAnchor).isActive = true
         uiLabel.topAnchor.constraint(equalTo: usernameUiImage.bottomAnchor, constant: 8).isActive = true
-        uiLabel.text = "hi"
+        uiLabel.text = text
         uiLabel.textColor = .ypWhite
     }
     
@@ -83,4 +81,23 @@ final class ProfileViewController: UIViewController {
         uiButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
     
+    private func setupProfileService() {
+        guard let token = OAuth2TokenStorage.shared.token else { return }
+        ProfileService.shared.fetchProfile(token) { result in
+            switch result {
+            case .success(let profile):
+                self.setupProfile(profile: profile)
+                print("setupProfileService success")
+                
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+    }
+    
+    private func setupProfile(profile: Profile) {
+        setupNameLabel(text: profile.name)
+        setupUsername(text: profile.loginName)
+        setupBio(text: profile.bio)
+    }
 }
