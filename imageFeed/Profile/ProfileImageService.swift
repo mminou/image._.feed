@@ -13,30 +13,44 @@ final class ProfileImageService {
         task?.cancel()
         
         guard let token = OAuth2TokenStorage.shared.token else {
-            print("не удалось получить token из OAuth2TokenStorage")
+            print("[ProfileImageService]: не удалось получить token из OAuth2TokenStorage")
             return
         }
         guard let request = makeProfileImageURLRequest(token: token, useername: username) else {
-            print("не удалось создать request")
+            print("[ProfileImageService]: не удалось создать request")
             return
         }
-        let task = URLSession.shared.data(for: request) { (result: Result<Data, Error>) in
+        let task = URLSession.shared.objectTask(for: request) { (result: Result<UserResult, any Error>) in
             switch result {
-            case .success(let data):
-                do {
-                    let response = try self.decoder.decode(UserResult.self, from: data)
-                    let image = response.profileImage.small
-                    self.avatarURL = image
-                    completion(.success(image))
-                    NotificationCenter.default.post(name: ProfileImageService.didChangeNotification, object: self, userInfo: ["URL": image])
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success(let response):
+                let image = response.profileImage.small
+                self.avatarURL = image
+                completion(.success(image))
+                NotificationCenter.default.post(name: ProfileImageService.didChangeNotification, object: self, userInfo: ["URL": image])
             case .failure(let error):
+                print("[ProfileImageService]: UserResult - \(error.localizedDescription)")
                 completion(.failure(error))
             }
             self.task = nil
         }
+        
+//        let task = URLSession.shared.data(for: request) { (result: Result<Data, Error>) in
+//            switch result {
+//            case .success(let data):
+//                do {
+//                    let response = try self.decoder.decode(UserResult.self, from: data)
+//                    let image = response.profileImage.small
+//                    self.avatarURL = image
+//                    completion(.success(image))
+//                    NotificationCenter.default.post(name: ProfileImageService.didChangeNotification, object: self, userInfo: ["URL": image])
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//            self.task = nil
+//        }
         self.task = task
         task.resume()
     }

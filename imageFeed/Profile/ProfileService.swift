@@ -17,30 +17,47 @@ final class ProfileService {
         guard
             let request = makeProfileURLRequest(token: token)
         else {
-            print("не удалось создать request")
+            print("[ProfileService]: не удалось создать request")
             return
         }
         
-        let task = URLSession.shared.data(for: request) { (result: Result<Data, Error>) in
+        let task = URLSession.shared.objectTask(for: request) { (result: Result<ProfileResult, any Error>) in
             switch result {
-            case .success(let data):
-                do {
-                    let response = try self.decoder.decode(ProfileResult.self, from: data)
-                    let profile = Profile(
-                        username: response.username,
-                        name: "\(response.firstName) \(response.lastName)",
-                        loginName: "@"+response.username,
-                        bio: response.bio ?? "")
-                    self.profile = profile
-                    completion(.success(profile))
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success(let response):
+                let profile = Profile(
+                    username: response.username,
+                    name: "\(response.firstName) \(response.lastName)",
+                    loginName: "@"+response.username,
+                    bio: response.bio ?? "")
+                self.profile = profile
+                completion(.success(profile))
             case .failure(let error):
+                print("[ProfileService]: ProfileResult - \(error.localizedDescription)")
                 completion(.failure(error))
             }
             self.task = nil
         }
+        
+//        let task = URLSession.shared.data(for: request) { (result: Result<Data, Error>) in
+//            switch result {
+//            case .success(let data):
+//                do {
+//                    let response = try self.decoder.decode(ProfileResult.self, from: data)
+//                    let profile = Profile(
+//                        username: response.username,
+//                        name: "\(response.firstName) \(response.lastName)",
+//                        loginName: "@"+response.username,
+//                        bio: response.bio ?? "")
+//                    self.profile = profile
+//                    completion(.success(profile))
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//            self.task = nil
+//        }
         self.task = task
         task.resume()
     }

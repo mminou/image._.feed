@@ -16,6 +16,7 @@ final class OAuth2Service {
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         guard lastCode != code else {
+            print("[OAuth2Service]: NetworkError, lastCode - \(NetworkError.invalidRequest)")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
@@ -25,20 +26,16 @@ final class OAuth2Service {
         guard
             let request = tokenAuthRequest(code: code)
         else {
-            print("не удалось создать Request")
+            print("[OAuth2Service]: NetworkError, request  - \(NetworkError.invalidRequest)")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
         
-        let task = urlSession.data(for: request) { (result: Result<Data, Error>) in
+        let task = urlSession.objectTask(for: request) { (result: Result<OAuthTokenResponseBody, Error>) in
             switch result {
-            case .success(let data):
-                do {
-                    let response = try self.decoder.decode(OAuthTokenResponseBody.self, from: data)
-                    OAuth2TokenStorage.shared.token = response.access_token
-                    completion(.success(response.access_token))
-                    
-                } catch { completion(.failure(error)) }
+            case .success(let response):
+                OAuth2TokenStorage.shared.token = response.access_token
+                completion(.success(response.access_token))
             case .failure(let error):
                 if let netError = error as? NetworkError {
                     switch netError {
@@ -54,11 +51,42 @@ final class OAuth2Service {
                         print("url session error")
                     }
                 }
+                print("[OAuth2Service]: error - \(error.localizedDescription)")
                 completion(.failure(error))
             }
             self.task = nil
             self.lastCode = nil
         }
+        
+//        let task = urlSession.data(for: request) { (result: Result<Data, Error>) in
+//            switch result {
+//            case .success(let data):
+//                do {
+//                    let response = try self.decoder.decode(OAuthTokenResponseBody.self, from: data)
+//                    OAuth2TokenStorage.shared.token = response.access_token
+//                    completion(.success(response.access_token))
+//                    
+//                } catch { completion(.failure(error)) }
+//            case .failure(let error):
+//                if let netError = error as? NetworkError {
+//                    switch netError {
+//                    case .decodingError(let error):
+//                        print("decoding error: \(error)")
+//                    case .httpStatusCode(let code):
+//                        print("http status code: \(code)")
+//                    case .invalidRequest:
+//                        print("invalid request")
+//                    case .urlRequestError(let error):
+//                        print("url request error: \(error)")
+//                    case .urlSessionError:
+//                        print("url session error")
+//                    }
+//                }
+//                completion(.failure(error))
+//            }
+//            self.task = nil
+//            self.lastCode = nil
+//        }
         self.task = task
         task.resume()
     }
