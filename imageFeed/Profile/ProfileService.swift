@@ -1,35 +1,16 @@
 import UIKit
 
 final class ProfileService {
+    // MARK: - Singleton
     static let shared = ProfileService()
     private init() {}
     
+    // MARK: - Private Properties
     private let decoder = JSONDecoder()
     private var task: URLSessionTask?
     private(set) var profile: Profile?
     
-    private func makeProfileURLRequest(token: String) -> URLRequest? {
-        guard
-            var urlComponents = URLComponents(string: Constants.defaultBaseURLString)
-        else {
-            print("не удалось создать URLComponents")
-            return nil
-        }
-        
-        urlComponents.path = "/me"
-        
-        guard
-            let url = urlComponents.url
-        else {
-            print("не удалось получить url из URLComponents")
-            return nil
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        return request
-    }
-    
+    // MARK: - Public Methods
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         task?.cancel()
         
@@ -63,8 +44,34 @@ final class ProfileService {
         self.task = task
         task.resume()
     }
+    
+    // MARK: - Private Methods
+    private func makeProfileURLRequest(token: String) -> URLRequest? {
+        guard
+            var urlComponents = URLComponents(string: Constants.defaultBaseURLString)
+        else {
+            print("не удалось создать URLComponents")
+            return nil
+        }
+        
+        urlComponents.path = "/me"
+        
+        guard
+            let url = urlComponents.url
+        else {
+            print("не удалось получить url из URLComponents")
+            return nil
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+    
+    
 }
 
+// MARK: - ProfileResult
 private struct ProfileResult: Codable {
     let username: String
     let firstName: String
@@ -79,6 +86,7 @@ private struct ProfileResult: Codable {
     }
 }
 
+// MARK: - Profile
 struct Profile {
     let username: String
     let name: String

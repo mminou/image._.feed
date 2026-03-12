@@ -2,7 +2,7 @@ import UIKit
 
 final class OAuth2Service {
     
-    // MARK: - singleton
+    // MARK: - Singleton
     static let shared = OAuth2Service()
     private init() { }
     
