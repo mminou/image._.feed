@@ -8,8 +8,11 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProfileImage()
-        setupProfileService()
+        //setupProfileService()
         setupLogout()
+        if let profile = ProfileService.shared.profile {
+            setupProfile(profile: profile)
+        }
     }
     
     private func setupView() {
@@ -81,19 +84,19 @@ final class ProfileViewController: UIViewController {
         uiButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
     
-    private func setupProfileService() {
-        guard let token = OAuth2TokenStorage.shared.token else { return }
-        ProfileService.shared.fetchProfile(token) { result in
-            switch result {
-            case .success(let profile):
-                self.setupProfile(profile: profile)
-                print("setupProfileService success")
-                
-            case .failure(let error):
-                print("error: \(error)")
-            }
-        }
-    }
+//    private func setupProfileService() {
+//        guard let token = OAuth2TokenStorage.shared.token else { return }
+//        ProfileService.shared.fetchProfile(token) { result in
+//            switch result {
+//            case .success(let profile):
+//                self.setupProfile(profile: profile)
+//                print("setupProfileService success")
+//                
+//            case .failure(let error):
+//                print("error: \(error)")
+//            }
+//        }
+//    }
     
     private func setupProfile(profile: Profile) {
         setupNameLabel(text: profile.name)

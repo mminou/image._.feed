@@ -6,6 +6,7 @@ final class ProfileService {
     
     private let decoder = JSONDecoder()
     private var task: URLSessionTask?
+    private(set) var profile: Profile?
     
     private func makeProfileURLRequest(token: String) -> URLRequest? {
         guard
@@ -49,6 +50,7 @@ final class ProfileService {
                         name: "\(response.firstName) \(response.lastName)",
                         loginName: "@"+response.username,
                         bio: response.bio ?? "")
+                    self.profile = profile
                     completion(.success(profile))
                 } catch {
                     completion(.failure(error))
