@@ -2,6 +2,7 @@ import UIKit
 
 final class ProfileImageService {
     static let shared = ProfileImageService()
+    static let didChangeNotification = Notification.Name("didChangeNotification")
     private init() {}
     
     private let decoder = JSONDecoder()
@@ -27,6 +28,7 @@ final class ProfileImageService {
                     let image = response.profileImage.small
                     self.avatarURL = image
                     completion(.success(image))
+                    NotificationCenter.default.post(name: ProfileImageService.didChangeNotification, object: self, userInfo: ["URL": image])
                 } catch {
                     completion(.failure(error))
                 }

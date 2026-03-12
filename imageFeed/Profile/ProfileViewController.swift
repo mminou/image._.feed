@@ -4,15 +4,21 @@ final class ProfileViewController: UIViewController {
     private var profileUiImage = UIImageView()
     private var nameUiImage = UILabel()
     private var usernameUiImage = UILabel()
+    private var profileImageServiceObserver: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProfileImage()
-        //setupProfileService()
         setupLogout()
         if let profile = ProfileService.shared.profile {
             setupProfile(profile: profile)
         }
+        
+        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+            self.updateAvatar()
+        }
+        updateAvatar()
     }
     
     private func setupView() {
@@ -103,4 +109,41 @@ final class ProfileViewController: UIViewController {
         setupUsername(text: profile.loginName)
         setupBio(text: profile.bio)
     }
+    
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
+    }
+    
+//    override init(nibName: String?, bundle: Bundle?) {
+//        super.init(nibName: nibName, bundle: bundle)
+//        addObserver()
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        addObserver()
+//    }
+//    deinit {
+//        removeObserver()
+//    }
+//    private func addObserver() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateAvatar(notification:)), name: ProfileImageService.didChangeNotification, object: nil)
+//    }
+//    private func removeObserver() {
+//        NotificationCenter.default.removeObserver(self, name: ProfileImageService.didChangeNotification, object: nil)
+//    }
+//    @objc
+//    private func updateAvatar(notification: Notification) {
+//        guard
+//            isViewLoaded,
+//            let userInfo = notification.userInfo,
+//            let profileImageURL = userInfo["URL"] as? String,
+//            let url = URL(string: profileImageURL)
+//        else { return }
+//        // TODO [Sprint 11] Обновите аватар, используя Kingfisher
+//    }
 }
